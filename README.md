@@ -11,6 +11,6 @@
 
 ## Roles/Interests
 - Dylan MacLeod (UI/UX design)
-- Evan Harder ()
+- Evan Harder (Documentation)
 - Zarrar Khalid ()
-- Ramisa Zaman ()
+- Ramisa Zaman (API/data)

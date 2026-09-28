@@ -1,16 +1,16 @@
 # WebDev Specialists
 
-**Tentative Topic:** ???
+**Tentative Topic:** Vehicle Specifications
 *API* https://vpic.nhtsa.dot.gov/api/
 
 ## Group
-- Dylan MacLeod (Macpickle)
+- Dylan MacLeod 
 - Evan Harder
 - Zarrar Khalid
 - Ramisa Zaman
 
-## Roles
-- Dylan MacLeod ()
+## Roles/Interests
+- Dylan MacLeod (UI/UX design)
 - Evan Harder ()
 - Zarrar Khalid ()
 - Ramisa Zaman ()

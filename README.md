@@ -14,5 +14,5 @@
 ## Roles/Interests
 - Dylan MacLeod (UI/UX design)
 - Evan Harder (Documentation)
-- Zarrar Khalid ()
+- Zarrar Khalid (Testing/Quality Assurance)
 - Ramisa Zaman (API/data)

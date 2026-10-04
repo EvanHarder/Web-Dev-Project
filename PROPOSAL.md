@@ -5,8 +5,20 @@ Comparators - 2–3 existing apps/sites doing something similar, and how yours d
 Scaled feature plan - the baseline features (from project/PROJECT.md) plus each member's vertical slice, named and assigned. Make it clear who owns what
 Wireframes - sketches of your key pages (hand-drawn, Figma, anything legible), committed to the repo
 # AutoVault
+## Data source
 ## Elevator Pitch
 ## Future Plan
+### Baseline Features
+Two HTML pages with a similar style that allow you to navigate from the home page to the car detail page, including an example of the detail layout.
+### Vertical Slices
+  Dylan: Main home page
+  
+  Evan: Comparison tool
+  
+  Ramisa: User Profile and Reviews
+  
+  Zarrar: Car Detail page
+  
 ## Comparisons
 https://www.automobile-catalog.com/ \
 https://www.autoevolution.com/cars/

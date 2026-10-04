@@ -8,3 +8,7 @@ Wireframes - sketches of your key pages (hand-drawn, Figma, anything legible), c
 ## Elevator Pitch
 ## Future Plan
 ## Comparisons
+https://www.automobile-catalog.com/
+https://www.autoevolution.com/cars/
+
+Unlike platforms like Automobile-Catalog and AutoEvolution, which are feature dense, text-driven directory layouts that feel outdated- especially on smaller devices, our project prioritizes a modern, user-friendly experience centered on clean visual design and seamless mobile responsiveness. We will also offer a tool that allows users to directly compare two or more vehicles such as dimensions, performance metrics and more.

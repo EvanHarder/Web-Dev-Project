@@ -4,3 +4,7 @@ Data source - the API you'll consume: its name/URL, and a sample response (paste
 Comparators - 2–3 existing apps/sites doing something similar, and how yours differs
 Scaled feature plan - the baseline features (from project/PROJECT.md) plus each member's vertical slice, named and assigned. Make it clear who owns what
 Wireframes - sketches of your key pages (hand-drawn, Figma, anything legible), committed to the repo
+# AutoVault
+## Elevator Pitch
+## Future Plan
+## Comparisons

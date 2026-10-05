@@ -41,7 +41,7 @@ Unlike platforms like Automobile-Catalog and AutoEvolution, which are feature de
 
 ![Log in Page](./frontend/Wireframes/login.png)
 
-![Home Page](./frontend/Wireframes/Catalog homepage.png)
+![Home Page](./frontend/Wireframes/Catalog_homepage.png)
 
 ![Detail Page](./frontend/Wireframes/detail_Wireframe.png)
 

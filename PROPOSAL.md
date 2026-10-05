@@ -35,3 +35,14 @@ https://www.automobile-catalog.com/ \
 https://www.autoevolution.com/cars/
 
 Unlike platforms like Automobile-Catalog and AutoEvolution, which are feature dense, text-driven directory layouts that feel outdated- especially on smaller devices, our project prioritizes a modern, user-friendly experience centered on clean visual design and seamless mobile responsiveness. We will extend the capabilities of these websites that allows users to directly compare two or more vehicles such as dimensions, performance metrics and more.
+
+## Wireframes
+![Sign up Page](./frontend/Wireframes/signup.png)
+
+![Log in Page](./frontend/Wireframes/login.png)
+
+![Home Page](./frontend/Wireframes/Catalog homepage.png)
+
+![Detail Page](./frontend/Wireframes/detail_Wireframe.png)
+
+![User Profile](./frontend/Wireframes/userprofile.png)

@@ -59,7 +59,7 @@ body {
 .catalog-header-container {
     all: inherit;
     padding: 0;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .search-bar {
@@ -92,6 +92,10 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+}
+
+.page {
+    padding: 0 5%;
 }
 
 /* Filter/Sort styles */
@@ -131,9 +135,21 @@ body {
 /* Card list styles */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
     gap: 24px;
     margin-bottom: 40px;
+}
+
+@media (max-width: 900px) {
+    .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .card {
@@ -152,7 +168,8 @@ body {
 .card-media img {
     width: 100%;
     height: auto;
-    transition: transform 0.3s ease;
+    max-height: 250px;
+    object-fit: cover;
 }
 
 .card-body {

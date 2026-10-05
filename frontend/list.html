@@ -11,17 +11,153 @@
   </head>
 
   <header class="site-header">
-      <!-- <img src="images/logo.gif" alt="Sudoku Centre" width="75"> -->
-        <h1>Home Page</h1>
+        <h2 class="site-title">AutoVault</h2>
         <nav aria-label="Primary">
             <a href="list.html">Home</a>
             <a href="detail.html">Car Details</a>
             <a href="user.html">Account Details</a>
         </nav>
-    </header>
+  </header>
 
-  <body>
+  <main id="main-content">
+    <div class="page">
 
+      <!-- Catalog View -->
+      <section class="catalog-view">
+        <div class="catalog-header-container">
+          <!-- Search Bar -->
+          <form class="search-bar">
+            <input type="search" id="search-input" placeholder="Search by make, model, or year..." />
+            <button type="submit" id="search-button">Search</button>
+          </form>
 
-  </body>
+          <!-- Page Title -->
+          <h1 id="catalog-header" class="page-title">Vehicle Catalog</h1>
+
+          <!-- Controls/Filters -->
+          <div class="controls-container">
+            <div class="controls-group">
+              <select class="dropdown" name="filter-category" id="filter-category">
+                <option value="">All Categories</option>
+                <option value="sedan">Sedan</option>
+                <option value="suv">SUV</option>
+                <option value="truck">Truck</option>
+                <option value="...">...</option>
+              </select>
+              <span class="filter-count">Showing # vehicles</span>
+            </div>
+
+            <div class="controls-group">
+              <select class="dropdown" name="sort-category" id="sort-category">
+                <option value="">Default</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="...">...</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vehicle List -->
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-media">
+              <img src="./car1.jpg" alt="Vehicle Image" />
+            </div>  
+            <div class="card-body">
+              <h2 class="card-title">Toyota Camry 2026</h2>
+
+              <div class="card-footer">
+                <a class="action-link" href="detail.html">
+                  <span>View Details</span>
+                  <span class="icon">></span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="./car1.jpg" alt="Vehicle Image" />
+            </div>  
+            <div class="card-body">
+              <h2 class="card-title">Toyota Camry 2026</h2>
+
+              <div class="card-footer">
+                <a class="action-link" href="detail.html">
+                  <span>View Details</span>
+                  <span class="icon">></span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="./car1.jpg" alt="Vehicle Image" />
+            </div>  
+            <div class="card-body">
+              <h2 class="card-title">Toyota Camry 2026</h2>
+
+              <div class="card-footer">
+                <a class="action-link" href="detail.html">
+                  <span>View Details</span>
+                  <span class="icon">></span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="./car1.jpg" alt="Vehicle Image" />
+            </div>  
+            <div class="card-body">
+              <h2 class="card-title">Toyota Camry 2026</h2>
+
+              <div class="card-footer">
+                <a class="action-link" href="detail.html">
+                  <span>View Details</span>
+                  <span class="icon">></span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="./car1.jpg" alt="Vehicle Image" />
+            </div>  
+            <div class="card-body">
+              <h2 class="card-title">Toyota Camry 2026</h2>
+
+              <div class="card-footer">
+                <a class="action-link" href="detail.html">
+                  <span>View Details</span>
+                  <span class="icon">></span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="./car1.jpg" alt="Vehicle Image" />
+            </div>  
+            <div class="card-body">
+              <h2 class="card-title">Toyota Camry 2026</h2>
+
+              <div class="card-footer">
+                <a class="action-link" href="detail.html">
+                  <span>View Details</span>
+                  <span class="icon">></span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+          
+      </section>  
+    </div>
+  </main>
 </html>

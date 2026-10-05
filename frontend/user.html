@@ -3,25 +3,95 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Page Title</title>
-
+    <title>User Profile</title>
     <link rel="stylesheet" href="styles/page.css" />
-    
+    <link rel="stylesheet" href="styles/profile.css" />
+
   </head>
 
-  <header class="site-header">
-      <!-- <img src="images/logo.gif" alt="Sudoku Centre" width="75"> -->
-        <h1>User Page</h1>
-        <nav aria-label="Primary">
-            <a href="list.html">Home</a>
-            <a href="detail.html">Car Details</a>
-            <a href="user.html">Account Details</a>
-        </nav>
+  <body>
+    <header class="site-header">
+      <h2 class="site-title">AutoVault</h2>
+      <nav aria-label="Primary">
+        <a href="list.html">Home</a>
+        <a href="detail.html">Car Details</a>
+        <a href="user.html">User Profile</a>
+        <a href="login.html">Sign out</a>
+      </nav>
     </header>
 
-  <body>
+    <main>
+      <h1>User profile</h1>
 
+      <div class="layout">
+        <!-- Profile -->
+        <div class="box">
+          <div class="profile-top">
+            <span>Username</span>
+          </div>
+          <div class="profile-form">
+            <label for="name">Full name</label>
+            <input type="text" id="name" value="Username" readonly />
 
+            <label for="password">Password</label>
+            <input type="password" id="password" value="password1234" readonly />
+
+            <button>Edit details</button>
+          </div>
+        </div>
+
+        <!-- Saved cars -->
+        <div>
+          <div class="cars-header">
+            <h2>Saved cars</h2>
+            <button>Add a car</button>
+          </div>
+
+          <div class="car-grid">
+            <div class="box">
+              <div class="car-image">Car</div>
+              <div class="car-info">
+                <div>
+                  <strong>Saved car 1</strong><br />
+                  <small>Add vehicle details</small>
+                </div>
+                <span>+</span>
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="car-image">Car</div>
+              <div class="car-info">
+                <div>
+                  <strong>Saved car 2</strong><br />
+                  <small>Add vehicle details</small>
+                </div>
+                <span>+</span>
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="car-image">Car</div>
+              <div class="car-info">
+                <div>
+                  <strong>Saved car 3</strong><br />
+                  <small>Add vehicle details</small>
+                </div>
+                <span>+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <span>&copy; AutoVault</span>
+      <span>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </span>
+    </footer>
   </body>
 </html>

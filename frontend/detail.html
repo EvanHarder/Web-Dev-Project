@@ -3,23 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/page.css" />
 
     <title>Car Details</title>
 
     <style>
-      header {
-        border-bottom: 2px solid black;
-        padding: 20px;
-      }
-
-      nav {
-        float: right;
-      }
-
-      nav a {
-        margin: 10px;
-      }
-
       .search {
         text-align: right;
         margin: 15px 25px;
@@ -33,6 +21,12 @@
 
       .search button {
         padding: 8px 3%;
+      }
+
+      .car-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
       }
 
       .car {
@@ -60,49 +54,49 @@
     </style>
   </head>
 
+  <header class="site-header">
+    <h2 class="site-title">AutoVault</h2>
+    <nav aria-label="Primary">
+      <a href="list.html">Home</a>
+      <a href="detail.html">Car Details</a>
+      <a href="user.html">Account Details</a>
+    </nav>
+  </header>
+
   <body>
-
-    <header>
-      <h1>Car Details</h1>
-
-      <nav>
-        <a href="list.html">Home</a>
-        <a href="detail.html">Car Details</a>
-        <a href="user.html">Account Details</a>
-      </nav>
-    </header>
-
     <div class="search">
       <input type="text" placeholder="Search cars">
       <button>Search</button>
     </div>
 
-    <div class="car">
-      <div class="car-image">
-        <img src="car1.jpg" alt="Toyota Camry">
+    <div class="car-container">
+      <div class="car">
+        <div class="car-image">
+          <img src="car1.jpg" alt="Toyota Camry">
+        </div>
+
+        <div class="info">VIN: 1099382920</div>
+        <div class="info">Make: Toyota</div>
+        <div class="info">Model: Camry</div>
+        <div class="info">Year: 2026</div>
+        <div class="info">Engine Size: 2.5 L Dynamic Force 4 - Cylinder</div>
+        <div class="info">Transmission: eCVT</div>
+        <div class="info">Body Style: Sedan</div>
       </div>
 
-      <div class="info">VIN: 1099382920</div>
-      <div class="info">Make: Toyota</div>
-      <div class="info">Model: Camry</div>
-      <div class="info">Year: 2026</div>
-      <div class="info">Engine Size: 2.5 L Dynamic Force 4 - Cylinder</div>
-      <div class="info">Transmission: eCVT</div>
-      <div class="info">Body Style: Sedan</div>
-    </div>
+      <div class="car">
+        <div class="car-image">
+          <img src="car2.jpg" alt="Tesla Model 3">
+        </div>
 
-    <div class="car">
-      <div class="car-image">
-        <img src="car2.jpg" alt="Tesla Model 3">
+        <div class="info">VIN: 109093292</div>
+        <div class="info">Make: Tesla</div>
+        <div class="info">Model: 3</div>
+        <div class="info">Year: 2024</div>
+        <div class="info">Engine Size: N/A (Electric)</div>
+        <div class="info">Transmission: 1-speed direct drive</div>
+        <div class="info">Body Style: Sedan</div>
       </div>
-
-      <div class="info">VIN: 109093292</div>
-      <div class="info">Make: Tesla</div>
-      <div class="info">Model: 3</div>
-      <div class="info">Year: 2024</div>
-      <div class="info">Engine Size: N/A (Electric)</div>
-      <div class="info">Transmission: 1-speed direct drive</div>
-      <div class="info">Body Style: Sedan</div>
     </div>
 
   </body>

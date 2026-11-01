@@ -6,6 +6,7 @@ import App from './App.jsx'
 import Home from './routes/Home.jsx'
 import Detail from './routes/Detail.jsx'
 import Profile from './routes/Profile.jsx'
+import Compare from './routes/Compare.jsx'
 import NotFound from './routes/NotFound.jsx'
 
 const router = createBrowserRouter([
@@ -16,7 +17,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },       
       { path: 'detail', element: <Detail /> },
-      { path: 'profile', element: <Profile /> }
+      { path: 'profile', element: <Profile /> },
+      { path: 'compare', element: <Compare /> }
     ],
   },
 ]);

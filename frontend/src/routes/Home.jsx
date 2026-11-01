@@ -69,7 +69,7 @@ function Home() {
   const brandList = [
     { id: 0, name: 'All Brands', value: '' },
     { id: 1, name: 'Toyota', value: 'Toyota' },
-    { id: 2, name: 'Telsa', value: 'Telsa' },
+    { id: 2, name: 'Tesla', value: 'Tesla' },
   ]
   
   const [filteredCarList, setFilteredCarList] = useState(carList);

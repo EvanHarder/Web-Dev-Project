@@ -22,7 +22,12 @@ function Compare() {
       {car ? (
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
   {/* Selected Car */}
-  <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
+        <img
+            className="h-full w-full object-contain"
+            src={car.image}
+            alt={`${car.brand} ${car.model}`}
+          />
+    <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
     <h2 className="text-xl font-semibold text-gray-900">
       {car.brand} {car.model}
     </h2>
@@ -35,6 +40,11 @@ function Compare() {
   </div>
 
   {/* Tesla */}
+        <img
+            className="h-full w-full object-contain"
+            src={tesla.image}
+            alt={`${tesla.brand} ${tesla.model}`}
+          />
   <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
     <h2 className="text-xl font-semibold text-gray-900">
       {tesla.brand} {tesla.model}

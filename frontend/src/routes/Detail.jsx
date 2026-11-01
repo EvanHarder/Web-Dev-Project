@@ -15,10 +15,14 @@ function Detail() {
   }
 
   const details = [
-    { label: 'Make', value: car.brand },
-    { label: 'Model', value: car.model },
-    { label: 'Year', value: car.year },
-  ]
+  { label: 'VIN', value: car.vin },
+  { label: 'Make', value: car.brand },
+  { label: 'Model', value: car.model },
+  { label: 'Year', value: car.year },
+  { label: 'Engine Size', value: car.engineSize },
+  { label: 'Transmission', value: car.transmission },
+  { label: 'Body Style', value: car.bodyStyle },
+]
 
   return (
     <section>

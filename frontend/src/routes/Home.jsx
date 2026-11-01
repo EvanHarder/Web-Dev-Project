@@ -93,7 +93,7 @@ function Home() {
     } else if (selectedSort === 'year-asc') {
       sortedList.sort((a, b) => a.year - b.year);
     } else if (selectedSort === '') {
-      sortedList = [...carList];
+      sortedList.sort((a, b) => a.id - b.id)
     }
     
     setFilteredCarList(sortedList);

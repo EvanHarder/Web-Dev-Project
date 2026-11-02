@@ -25,7 +25,7 @@ const carList = [
   { id: 2,
     brand: 'Tesla', 
     model: 'Model 3', 
-    year: 2025, 
+    year: 2024,
     image: '/car2.jpg', 
     vin: '109389393', 
     engineSize: 'N/A (Electric)', 
@@ -35,7 +35,7 @@ const carList = [
     id: 3,
     brand: 'Toyota',
     model: 'Camry',
-    year: 2026,
+    year: 2025,
     image: '/car1.jpg',
     vin: '1099382920',
     engineSize: '2.5 L Dynamic Force 4 - Cylinder',
@@ -45,7 +45,7 @@ const carList = [
   { id: 4, 
     brand: 'Tesla', 
     model: 'Model 3', 
-    year: 2025, 
+    year: 2025,
     image: '/car2.jpg',
     vin: '109389393', 
     engineSize: 'N/A (Electric)', 
@@ -55,32 +55,42 @@ const carList = [
     id: 5,
     brand: 'Toyota',
     model: 'Camry',
-    year: 2026,
+    year: 2024,
     image: '/car1.jpg',
     vin: '1099382920',
     engineSize: '2.5 L Dynamic Force 4 - Cylinder',
     transmission: 'eCVT',
     bodyStyle: 'Sedan',
   },
-  { id: 6, brand: 'Tesla', model: 'Model 3', year: 2025, image: '/car2.jpg' },
+  { id: 6, brand: 'Tesla', model: 'Model 3', year: 2026, image: '/car2.jpg' },
 ]
 function Home() {
   // this is hardcoded data for the demo, will come from carList later
   const brandList = [
     { id: 0, name: 'All Brands', value: '' },
     { id: 1, name: 'Toyota', value: 'Toyota' },
-    { id: 2, name: 'Telsa', value: 'Telsa' },
+    { id: 2, name: 'Tesla', value: 'Tesla' },
   ]
   
   const [filteredCarList, setFilteredCarList] = useState(carList);
+  const [brand, setBrand] = useState('all')
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const visible = carList
+  // .filter((car) => brand === 'all' || car.brand === brand)
+  .filter((car) => car.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    car.year.toString().toLowerCase().includes(searchTerm.toLowerCase()))
 
   // handles brand selection
   const handleBrandSelect = (selectedBrand) => {
     if (selectedBrand === '') {
-      setFilteredCarList(carList);
+      // setFilteredCarList(carList);
+      visible.filter((car) => brand === 'all')
     } else {
-      const filtered = carList.filter((car) => car.brand === selectedBrand);
-      setFilteredCarList(filtered);
+      // const filtered = carList.filter((car) => car.brand === selectedBrand);
+      // setFilteredCarList(filtered);
+      visible.filter((car) => car.brand === selectedBrand)
     }
   };
 
@@ -93,7 +103,7 @@ function Home() {
     } else if (selectedSort === 'year-asc') {
       sortedList.sort((a, b) => a.year - b.year);
     } else if (selectedSort === '') {
-      sortedList = [...carList];
+      sortedList.sort((a, b) => a.id - b.id)
     }
     
     setFilteredCarList(sortedList);
@@ -101,21 +111,21 @@ function Home() {
 
   return (
     <>
-      <Searchbar />
+      <Searchbar label="Search" searchTerm={searchTerm} onSearchChange={setSearchTerm}/>
         
         {/* Facets */}
-        <div className="flex flex-wrap items-center justify-between box-border w-full space-y-8 sm:space-y-0">
+        {/* <div className="flex flex-wrap items-center justify-between box-border w-full space-y-8 sm:space-y-0">
           <div className="flex items-center space-x-4"> 
             <Dropdown label="Brand" options={brandList} onOptionSelect={handleBrandSelect} />
             <p className="text-gray-500 text-md leading-none">Showing {filteredCarList.length} results</p>
           </div>
 
           <Dropdown label="Sort By" options={sortOptions} onOptionSelect={handleSortSelect} />
-        </div>
+        </div> */}
 
         {/* Car List */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCarList.map((car) => (
+          {visible.map((car) => (
             <Card key={car.id} car={car} />
           ))}
         </div>

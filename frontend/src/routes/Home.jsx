@@ -25,7 +25,7 @@ const carList = [
   { id: 2,
     brand: 'Tesla', 
     model: 'Model 3', 
-    year: 2025, 
+    year: 2024,
     image: '/car2.jpg', 
     vin: '109389393', 
     engineSize: 'N/A (Electric)', 
@@ -35,7 +35,7 @@ const carList = [
     id: 3,
     brand: 'Toyota',
     model: 'Camry',
-    year: 2026,
+    year: 2025,
     image: '/car1.jpg',
     vin: '1099382920',
     engineSize: '2.5 L Dynamic Force 4 - Cylinder',
@@ -45,7 +45,7 @@ const carList = [
   { id: 4, 
     brand: 'Tesla', 
     model: 'Model 3', 
-    year: 2025, 
+    year: 2025,
     image: '/car2.jpg',
     vin: '109389393', 
     engineSize: 'N/A (Electric)', 
@@ -55,21 +55,21 @@ const carList = [
     id: 5,
     brand: 'Toyota',
     model: 'Camry',
-    year: 2026,
+    year: 2024,
     image: '/car1.jpg',
     vin: '1099382920',
     engineSize: '2.5 L Dynamic Force 4 - Cylinder',
     transmission: 'eCVT',
     bodyStyle: 'Sedan',
   },
-  { id: 6, brand: 'Tesla', model: 'Model 3', year: 2025, image: '/car2.jpg' },
+  { id: 6, brand: 'Tesla', model: 'Model 3', year: 2026, image: '/car2.jpg' },
 ]
 function Home() {
   // this is hardcoded data for the demo, will come from carList later
   const brandList = [
     { id: 0, name: 'All Brands', value: '' },
     { id: 1, name: 'Toyota', value: 'Toyota' },
-    { id: 2, name: 'Telsa', value: 'Telsa' },
+    { id: 2, name: 'Tesla', value: 'Tesla' },
   ]
   
   const [filteredCarList, setFilteredCarList] = useState(carList);
@@ -93,7 +93,7 @@ function Home() {
     } else if (selectedSort === 'year-asc') {
       sortedList.sort((a, b) => a.year - b.year);
     } else if (selectedSort === '') {
-      sortedList = [...carList];
+      sortedList.sort((a, b) => a.id - b.id)
     }
     
     setFilteredCarList(sortedList);

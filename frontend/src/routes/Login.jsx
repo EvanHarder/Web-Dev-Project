@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function Login({ onLogin }) {
+function Login({ onLogin, onSwitch }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -43,6 +43,11 @@ function Login({ onLogin }) {
       <button type="submit" className="w-full rounded-lg bg-(--accent) p-3 font-medium text-white">
         Log in
       </button>
+
+      <p className="text-sm text-gray-500">No account?{' '}
+      <button type="button" onClick={onSwitch} 
+      className="underline">Sign up</button>
+    </p>
     </form>
   )
 }

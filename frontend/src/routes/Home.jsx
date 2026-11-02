@@ -73,14 +73,24 @@ function Home() {
   ]
   
   const [filteredCarList, setFilteredCarList] = useState(carList);
+  const [brand, setBrand] = useState('all')
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const visible = carList
+  // .filter((car) => brand === 'all' || car.brand === brand)
+  .filter((car) => car.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    car.year.toString().toLowerCase().includes(searchTerm.toLowerCase()))
 
   // handles brand selection
   const handleBrandSelect = (selectedBrand) => {
     if (selectedBrand === '') {
-      setFilteredCarList(carList);
+      // setFilteredCarList(carList);
+      visible.filter((car) => brand === 'all')
     } else {
-      const filtered = carList.filter((car) => car.brand === selectedBrand);
-      setFilteredCarList(filtered);
+      // const filtered = carList.filter((car) => car.brand === selectedBrand);
+      // setFilteredCarList(filtered);
+      visible.filter((car) => car.brand === selectedBrand)
     }
   };
 
@@ -101,21 +111,21 @@ function Home() {
 
   return (
     <>
-      <Searchbar />
+      <Searchbar label="Search" searchTerm={searchTerm} onSearchChange={setSearchTerm}/>
         
         {/* Facets */}
-        <div className="flex flex-wrap items-center justify-between box-border w-full space-y-8 sm:space-y-0">
+        {/* <div className="flex flex-wrap items-center justify-between box-border w-full space-y-8 sm:space-y-0">
           <div className="flex items-center space-x-4"> 
             <Dropdown label="Brand" options={brandList} onOptionSelect={handleBrandSelect} />
             <p className="text-gray-500 text-md leading-none">Showing {filteredCarList.length} results</p>
           </div>
 
           <Dropdown label="Sort By" options={sortOptions} onOptionSelect={handleSortSelect} />
-        </div>
+        </div> */}
 
         {/* Car List */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCarList.map((car) => (
+          {visible.map((car) => (
             <Card key={car.id} car={car} />
           ))}
         </div>

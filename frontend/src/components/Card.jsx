@@ -14,7 +14,7 @@ function Card({ car={}, type = null }) {
         to={link} 
         state={{ data: car }} 
         id={`${car.make?.charAt(0).toUpperCase()}`}
-        className="bg-neutral-950 w-full h-36 border-neutral-800 px-8 py-4 flex flex-row focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none focus:z-1 transition-all duration-300 overflow-hidden" 
+        className="bg-neutral-950 w-full h-36 rounded-lg border border-transparent px-8 py-4 flex flex-row focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none hover:text-(--accent) hover:scale-102 transition-all duration-300 overflow-hidden" 
       >
           <img 
             src={car.brand_logo_url} 
@@ -23,7 +23,7 @@ function Card({ car={}, type = null }) {
             loading="lazy"
           />
           <div className="flex flex-col justify-center ml-4 gap-2">
-            <div className="font-thin text-2xl text-(--accent)">{title}</div>
+            <div className="font-thin text-2xl">{title}</div>
             <div className="flex flex-wrap gap-2">
               {modelSpoiler && (
                 <>

@@ -15,10 +15,11 @@ const router = createBrowserRouter([
     element: <App />,                
     errorElement: <NotFound />,      
     children: [
-      { index: true, element: <Home /> },       
-      { path: 'detail', element: <Detail /> },
+      { index: true, element: <Home type="home" /> },       
+      { path: 'detail/:model', element: <Detail /> },
       { path: 'profile', element: <Profile /> },
-      { path: 'compare', element: <Compare /> }
+      { path: 'compare', element: <Compare /> },
+      { path: ':make', element: <Home type="model" /> }
     ],
   },
 ]);

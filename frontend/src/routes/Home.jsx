@@ -1,132 +1,177 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { getCarBrands, getCarModels } from '../lib/api'
 import Searchbar from '../components/Searchbar'
 import Dropdown from '../components/Dropdown'
 import Card from '../components/Card'
+import CardSkeleton from '../components/CardSkeleton'
+const backgroundImage = "./image.png"
 
-const sortOptions = [
-  { id: 0, name: 'Default', value: '' },
-  { id: 1, name: 'Year: Newest First', value: 'year-desc' },
-  { id: 2, name: 'Year: Oldest First', value: 'year-asc' },
+const alphabet = [
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+];
+
+const alphaSort = [
+  { id: -1, name: 'Alphabetical', value: 'none' },
+  { id: 0, name: 'Ascending: A-Z', value: 'asc' },
+  { id: 1, name: 'Descending: Z-A', value: 'desc' },
+];
+
+const modelCountSort = [
+  { id: -1, name: 'Car Models Count', value: 'none' },
+  { id: 0, name: 'Low to High', value: 'low' },
+  { id: 1, name: 'High to Low', value: 'high' },
 ]
 
-// this is hardcoded data for the demo, API will be called when implemented
-const carList = [
-  {
-    id: 1,
-    brand: 'Toyota',
-    model: 'Camry',
-    year: 2026,
-    image: '/car1.jpg',
-    vin: '1099382920',
-    engineSize: '2.5 L Dynamic Force 4 - Cylinder',
-    transmission: 'eCVT',
-    bodyStyle: 'Sedan',
-  },
-  { id: 2,
-    brand: 'Tesla', 
-    model: 'Model 3', 
-    year: 2025, 
-    image: '/car2.jpg', 
-    vin: '109389393', 
-    engineSize: 'N/A (Electric)', 
-    transmission: "1 Speed Direct Drive", 
-    bodyStyle: 'Sedan'},
-  {
-    id: 3,
-    brand: 'Toyota',
-    model: 'Camry',
-    year: 2026,
-    image: '/car1.jpg',
-    vin: '1099382920',
-    engineSize: '2.5 L Dynamic Force 4 - Cylinder',
-    transmission: 'eCVT',
-    bodyStyle: 'Sedan',
-  },
-  { id: 4, 
-    brand: 'Tesla', 
-    model: 'Model 3', 
-    year: 2025, 
-    image: '/car2.jpg',
-    vin: '109389393', 
-    engineSize: 'N/A (Electric)', 
-    transmission: "1 Speed Direct Drive", 
-    bodyStyle: 'Sedan'},
-  {
-    id: 5,
-    brand: 'Toyota',
-    model: 'Camry',
-    year: 2026,
-    image: '/car1.jpg',
-    vin: '1099382920',
-    engineSize: '2.5 L Dynamic Force 4 - Cylinder',
-    transmission: 'eCVT',
-    bodyStyle: 'Sedan',
-  },
-  { id: 6, brand: 'Tesla', model: 'Model 3', year: 2025, image: '/car2.jpg' },
-]
-function Home() {
-  // this is hardcoded data for the demo, will come from carList later
-  const brandList = [
-    { id: 0, name: 'All Brands', value: '' },
-    { id: 1, name: 'Toyota', value: 'Toyota' },
-    { id: 2, name: 'Telsa', value: 'Telsa' },
-  ]
-  
-  const [filteredCarList, setFilteredCarList] = useState(carList);
+function Home({ type = 'home' }) {  
+  const [filteredList, setFilteredList] = useState([]);
+  const [catalog, setCatalog] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [backgroundImageSrc, setBackgroundImageSrc] = useState(backgroundImage);
+  const [error, setError] = useState(null);
+  const make = window.location.pathname.split('/').pop();
 
-  // handles brand selection
-  const handleBrandSelect = (selectedBrand) => {
-    if (selectedBrand === '') {
-      setFilteredCarList(carList);
+  // used to scroll to alphabet letter when selected
+  const scrollTo = (letter) => {
+    const element = document.getElementById(`${letter}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // handle sorting of brands/makes. NOT WORKING FULLY
+  const handleSort = (selectedOption) => {
+    let sorted = [...filteredList];
+
+    if (selectedOption === 'asc') {
+      sorted.sort((a, b) => a.make?.localeCompare(b.make));
+    } else if (selectedOption === 'desc') {
+      sorted.sort((a, b) => b.make?.localeCompare(a.make));
+    } else if (selectedOption === 'low') {
+      sorted.sort((a, b) => a.models.length - b.models.length);
+    } else if (selectedOption === 'high') {
+      sorted.sort((a, b) => b.models.length - a.models.length);
     } else {
-      const filtered = carList.filter((car) => car.brand === selectedBrand);
-      setFilteredCarList(filtered);
+      sorted = [...catalog];
     }
-  };
 
-  // handles sort selection
-  const handleSortSelect = (selectedSort) => {
-    let sortedList = [...filteredCarList];
-    
-    if (selectedSort === 'year-desc') {
-      sortedList.sort((a, b) => b.year - a.year);
-    } else if (selectedSort === 'year-asc') {
-      sortedList.sort((a, b) => a.year - b.year);
-    } else if (selectedSort === '') {
-      sortedList = [...carList];
+    setFilteredList(sorted);
+  }
+
+  useEffect(() => {
+    // scroll to top of page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const fetchBrands = async () => {
+      setLoading(true);
+      try {
+        const make = await getCarBrands();
+        setCatalog(make.makes);
+        setFilteredList(make.makes);
+        setBackgroundImageSrc(backgroundImage);
+      } catch (error) {
+        setError('Error fetching car brands');
+        console.error('Error fetching car brands:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const fetchCars = async () => {
+      setLoading(true);
+        try {
+            const response = await getCarModels(make)
+            const updatedResponse = response.map(car => {
+                const modelWithoutMake = car.model.replace(new RegExp(`^${make}\\s+`, 'i'), '');
+                return { ...car, modelName: modelWithoutMake };
+            })
+
+            setCatalog(updatedResponse || []);
+            setFilteredList(updatedResponse || []);
+            // get random car image from the list to use as background image
+            const randomCar = updatedResponse[Math.floor(Math.random() * updatedResponse.length)];
+            setBackgroundImageSrc(`${randomCar.image_urls?.split(',')[0]}`);
+
+        } catch (error) {
+            console.error('Error fetching car data:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    if (!make) {
+      fetchBrands();
+    } else {
+      fetchCars();
     }
-    
-    setFilteredCarList(sortedList);
-  };
+
+  }, [make]);
 
   return (
     <>
-      <Searchbar />
-        
-        {/* Facets */}
-        <div className="flex flex-wrap items-center justify-between box-border w-full space-y-8 sm:space-y-0">
-          <div className="flex items-center space-x-4"> 
-            <Dropdown label="Brand" options={brandList} onOptionSelect={handleBrandSelect} />
-            <p className="text-gray-500 text-md leading-none">Showing {filteredCarList.length} results</p>
+      <div className="relative">
+        <img id="background-image" src={backgroundImageSrc} alt="Background" className="relative top-0 left-0 w-full h-110 object-cover" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-neutral-900 to-transparent" />
+      </div>
+
+      <main className="mx-auto max-w-6xl px-4 space-y-6 text-neutral-200">
+        <Searchbar />
+
+        <div className="flex flex-col items-center ">
+          <div className="flex flex-wrap items-center justify-between box-border w-full space-y-8 sm:space-y-0 pt-2">
+            <h1 className="text-5xl">{make ? make : 'Car Automakers & Brands'}</h1>
+            <p className="text-2xl font-semibold">{filteredList.length} 
+              <span className="text-lg text-neutral-400 font-thin">
+                {make ? ' MODELS' : ' MAKES'}
+              </span>
+            </p>
           </div>
 
-          <Dropdown label="Sort By" options={sortOptions} onOptionSelect={handleSortSelect} />
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-3">
+            {/* alphabetical buttons */}
+            {alphabet.map((letter) => (
+              <button
+                key={letter}
+                className="px-3 py-1 rounded-md bg-neutral-800 text-white hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+                onClick={() => {
+                  scrollTo(letter);
+                }}
+              >
+                {letter}
+              </button>
+            ))}
+          </div>
         </div>
+        <hr className="border-neutral-800 m-0"/>
+          
+        {error && 
+            <div className="box-border w-full flex flex-col items-center justify-center text-center m-0">
+              <p className="text-red-500 text-lg">{error}, please try again later.</p>
+            </div>
+        }
 
-        {/* Car List */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCarList.map((car) => (
-            <Card key={car.id} car={car} />
-          ))}
-        </div>
+        <div className="flex flex-col md:flex-row">
+          {/* sidebar for sorting/filtering */}
+          <div className="md:w-1/4 w-full flex flex-col p-4">
+            <div className="sticky top-4 md:h-96 flex flex-col gap-4 p-4 rounded-xl">
+              <p className="text-gray-500 text-sm leading-none">FILTER BY</p>
+              <Dropdown options={alphaSort} onOptionSelect={handleSort} />
+              <Dropdown options={modelCountSort} onOptionSelect={handleSort} />
+            </div>
+          </div>
 
-        <div className="flex items-center my-6">
-          <div className="flex-grow border-t border-gray-200"></div>
-          <span className="flex-shrink mx-4 text-gray-500 text-sm">
-            End of results...
-          </span>
-          <div className="flex-grow border-t border-gray-200"></div>
+          {/* car brands/models container */}
+          <div className={`grid grid-cols-1 md:grid-cols-2 items-center justify-center w-full gap-2 mt-4`}>
+              {loading ? (
+                Array.from({ length: 6 }).map((_, index) => (
+                  <CardSkeleton key={index} type={type} />
+                ))
+              ) : (
+                filteredList.map((car, index) => (
+                  <Card key={index} car={car} type={type} />
+                ))
+              )}
+          </div>
         </div>
+      </main>
     </>
   )
 }

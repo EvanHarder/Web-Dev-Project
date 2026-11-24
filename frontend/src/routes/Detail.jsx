@@ -4,6 +4,10 @@ function Detail() {
   const { state } = useLocation()
   const car = state?.data
 
+  console.log('Detail state:', car)
+  /* add fall back if car is undefined */
+  /* (search database) */
+
   if (!car) {
     return (
       <section className="rounded-lg border border-gray-200 bg-gray-50 p-8 text-center shadow-sm">
@@ -40,7 +44,7 @@ function Detail() {
         <div className="flex h-64 items-center justify-center bg-white p-4 md:h-96">
           <img
             className="h-full w-full object-contain"
-            src={car.image}
+            src={car.image_urls.split(',')[0]}
             alt={`${car.brand} ${car.model}`}
           />
         </div>

@@ -6,14 +6,11 @@ const navLinks = [
 
 function Navbar() {
   return (
-    <nav className="p-4 flex flex-wrap items-center justify-between box-border w-full bg-gray-50 border-b border-gray-200 shadow-sm">
-        <div className="navbar-logo">
-            <h1 className="logo-text text-xl font-bold ml-2">AutoVault</h1>
-        </div>
-        <ul className="inline-flex space-x-4">
+    <nav className="p-6 flex flex-wrap items-center justify-center w-full absolute top-0 left-0 z-10 bg-gradient-to-b from-neutral-900 to-transparent">
+        <ul className="inline-flex space-x-4 text-white text-lg font-medium">
             {navLinks.map((link) => (
                 <li key={link.href}>
-                    <a href={link.href} className="rounded-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white focus:outline-none transition-all duration-200 ease-in-out hover:text-(--accent)">
+                    <a href={link.href} className="focus:text-(--accent) focus:outline-none transition-all duration-200 ease-in-out hover:text-(--accent)">
                         {link.name}
                     </a>
                 </li>
